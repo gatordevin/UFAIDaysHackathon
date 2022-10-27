@@ -10,22 +10,37 @@ if __name__ == '__main__':
 
     # dataset = client.get_dataset("cl9q1w5c7106y082bhhe6abs3")
     project = client.get_project("cl9q1c3i10pk8080c813qfaqy")
+    dataset = next(project.datasets())
 
     labels = project.label_generator()
-    clean_labels = []
-    while(True):
-        try:
-            label = next(labels)
-            clean_labels.append(label)
-        except TypeError:
-            print("Cant get data type")
-        except StopIteration:
-            print("Reached end of labels")
-            break
+
+    # data_rows = dataset.data_rows()
+    # data_row = next(data_rows)
+    # print(data_row)
+    # exported_labels = list(project.labels())
+    # label = next(labels)
+    # print(type(exported_labels[0]))
+    # print()
+    # print(type(label))
+
+    # labels = project.labels()
+    # clean_labels = []
+    # for label in labels:
+    #     print(str(label))
+    # while(True):
+    #     # try:
+    #     label = next(labels)
+    #     print(label.data)
+    #     clean_labels.append(label)
+    #     # except TypeError:
+    #     #     print("Cant get data type")
+    #     # except StopIteration:
+    #     #     print("Reached end of labels")
+    #     #     break
     image_path = './weedimages/data/'
 
     coco_labels = COCOConverter.serialize_instances(
-        clean_labels,
+        labels,
         image_root=image_path,
         ignore_existing_data=True
     )
