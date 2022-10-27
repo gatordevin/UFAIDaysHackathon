@@ -12,20 +12,11 @@ if __name__ == '__main__':
     project = client.get_project("cl9q1c3i10pk8080c813qfaqy")
 
     labels = project.label_generator()
-    clean_labels = []
-    while(True):
-        try:
-            label = next(labels)
-            clean_labels.append(label)
-        except TypeError:
-            print("Cant get data type")
-        except StopIteration:
-            print("Reached end of labels")
-            break
+    
     image_path = './weedimages/data/'
 
     coco_labels = COCOConverter.serialize_instances(
-        clean_labels,
+        labels,
         image_root=image_path,
         ignore_existing_data=True
     )
