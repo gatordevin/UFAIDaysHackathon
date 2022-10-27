@@ -46,10 +46,13 @@ Args:
             iscrowds.append(iscrowd)
             image_ids.append(image_id)
         target = {}
-        target["boxes"] = boxes
-        target["labels"] = labels
-        target["image_id"] = image_ids
-        target["area"] = areas
-        target["iscrowd"] = iscrowds
-
+        target["boxes"] = torch.as_tensor(boxes, dtype=torch.float32)
+        if(len(boxes)<=0):
+             target["boxes"] = torch.zeros((0,4),dtype=torch.float32)
+        target["labels"] = torch.as_tensor(labels, dtype=torch.int64)
+        target["image_id"] = torch.FloatTensor(image_ids)
+        target["area"] = torch.FloatTensor(areas)
+        target["iscrowd"] = torch.FloatTensor(iscrowds)
+        transform = transforms.Compose([transforms.ToTensor()])
+        image = transform(image)
         return image, target

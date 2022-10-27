@@ -3,3 +3,6 @@
 *.json
 *.pth
 *.pyc
+*.ckpt
+*.tfevents.*
+*.yaml
