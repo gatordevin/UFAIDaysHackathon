@@ -10,6 +10,7 @@ if __name__ == '__main__':
 
     # dataset = client.get_dataset("cl9q1w5c7106y082bhhe6abs3")
     project = client.get_project("cl9q1c3i10pk8080c813qfaqy")
+    dataset = next(project.datasets())
 
     labels = project.label_generator()
     
