@@ -6,3 +6,4 @@
 *.ckpt
 *.tfevents.*
 *.yaml
+*.zip
